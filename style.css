@@ -120,6 +120,33 @@ h2 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); }
 .tag { position: absolute; top: -48px; left: 50%; transform: translateX(-50%); background: var(--cyan); color: #0a0f22; font-family: var(--display); font-weight: 700; font-size: 0.75rem; letter-spacing: 1.4px; padding: 3px 9px; border-radius: 8px; box-shadow: 0 0 14px var(--cyan); white-space: nowrap; }
 .crate .tag { transform: translateX(-50%) translateZ(calc(var(--w) / 2)); }
 
+/* ── Phone mockups ── */
+.phone { position: relative; border-radius: 34px; padding: 9px; background: linear-gradient(160deg, #2a3463, #0d1430); border: 1.5px solid rgba(255, 255, 255, 0.16); box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55), 0 0 40px rgba(57, 243, 255, 0.18); }
+.phone img { display: block; width: 100%; border-radius: 26px; }
+.phones { position: relative; height: 560px; perspective: 1400px; }
+.phones .phone { position: absolute; width: 250px; }
+.phones .front { right: 70px; top: 10px; transform: rotateY(-18deg) rotateX(6deg) rotateZ(2deg); animation: float 6s ease-in-out infinite; z-index: 2; }
+.phones .back { right: 250px; top: 70px; width: 215px; transform: rotateY(22deg) rotateX(4deg) rotateZ(-4deg); opacity: 0.8; animation: float 7s ease-in-out -2s infinite; }
+@keyframes float { 0%, 100% { translate: 0 0; } 50% { translate: 0 -14px; } }
+.chip { position: absolute; z-index: 3; font-family: var(--display); font-weight: 700; letter-spacing: 2px; padding: 8px 14px; border-radius: 12px; font-size: 0.9rem; }
+.chip.c1 { right: 20px; top: 120px; background: var(--amber); color: #0a0f22; box-shadow: 0 0 24px rgba(255, 194, 61, 0.6); animation: float 4s ease-in-out -1s infinite; }
+.chip.c2 { right: 290px; bottom: -6px; background: rgba(157, 255, 74, 0.14); color: var(--lime); border: 1.5px solid var(--lime); box-shadow: 0 0 24px rgba(157, 255, 74, 0.35); animation: float 5s ease-in-out -3s infinite; }
+
+/* ── Mission walkthrough ── */
+.trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; margin-top: 28px; }
+.step { margin: 0; text-align: center; }
+.step .phone { width: min(240px, 100%); margin: 0 auto 16px; }
+.step:nth-child(2) .phone { transform: translateY(-14px); box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55), 0 0 50px rgba(57, 243, 255, 0.35); }
+.step b { display: block; font-family: var(--display); font-size: 1.2rem; }
+.step span { color: var(--muted); font-weight: 700; }
+
+/* ── Gallery ── */
+.gallery { display: flex; gap: 22px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 26px max(4vw, calc((100vw - 1080px) / 2)) 30px; scrollbar-width: thin; scrollbar-color: rgba(57, 243, 255, 0.4) transparent; }
+.gallery figure { margin: 0; flex: 0 0 auto; width: 230px; scroll-snap-align: center; text-align: center; }
+.gallery figcaption { margin-top: 12px; color: var(--muted); font-weight: 800; }
+.gallery .phone { transition: transform 0.25s, box-shadow 0.25s; }
+.gallery .phone:hover { transform: translateY(-8px) rotateZ(-1deg); box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55), 0 0 50px rgba(57, 243, 255, 0.4); }
+
 /* ── Sections & cards ── */
 section { padding: 50px 0; }
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
@@ -176,6 +203,13 @@ footer a { color: var(--muted); }
   .hero .lead { margin: 0 auto; }
   .cta { justify-content: center; }
   .stage { height: 280px; }
+  .phones { height: 470px; margin-top: 10px; }
+  .phones .front { right: 50%; transform: translateX(50%) rotateY(-12deg) rotateX(4deg); width: 220px; top: 0; }
+  .phones .back { right: 50%; transform: translateX(-5%) rotateY(18deg) rotateX(4deg) rotateZ(-4deg); width: 180px; top: 50px; }
+  .chip.c1 { right: 6%; top: 60px; }
+  .chip.c2 { right: auto; left: 4%; bottom: -14px; }
+  .trio { grid-template-columns: 1fr; }
+  .step:nth-child(2) .phone { transform: none; }
   .crate { --w: 40px; }
   nav .links { gap: 12px; }
   nav .links a { font-size: 0.85rem; }
@@ -184,6 +218,6 @@ footer a { color: var(--muted); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .row, .crate { animation: none; }
+  .row, .crate, .phone, .chip { animation: none !important; }
   html { scroll-behavior: auto; }
 }
